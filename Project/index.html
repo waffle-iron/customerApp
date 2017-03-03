@@ -19,14 +19,32 @@
             <form>
                 <!--Input field-->
                 <div class="form-group">
-                  <label for="customerName">Customer Name</label>
-                  <input type="text" class="form-control" id="customerName" placeholder="Customer Name">
+                    <label for="customerName">Customer Name</label>
+                    <input type="text" class="form-control" id="customerName" placeholder="Customer Name">
                 </div>
 
                 <div class="form-group">
-                  <label for="plateNumber">Plate Number</label>
-                  <input type="text" class="form-control" id="plateNumber" placeholder="Plate Number">
+                    <label for="plateNumber">Plate Number</label>
+                    <input type="text" class="form-control" id="plateNumber" placeholder="Plate Number">
                 </div>
+
+                <!--Multiple Options-->
+                <!--<div><label for="typesOfCarWash">Select types of services</label></div>-->
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" id="inWash" value="200">
+                    Option one is this and that&mdash;be sure to include why it's great
+                  </label>
+                  <label>
+                    <input type="checkbox" id="outWash" value="200">
+                    Option one is this and that&mdash;be sure to include why it's great
+                  </label>
+                  <label>
+                    <input type="checkbox" id="intAndOutWash" value="300">
+                    Option one is this and that&mdash;be sure to include why it's great
+                  </label>
+                </div>
+
 
                 <div class="form-group">
                   <label for="price">Total Price</label>
