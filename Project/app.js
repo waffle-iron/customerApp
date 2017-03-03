@@ -1,21 +1,26 @@
 
+// user interface controller
+var viewController = (function(){
 
-var viewController = (function(){})();
+  return{
 
+  };
+
+})();
+
+// modelController
 var modelController = (function(){
 
   return {
-    runCode: function(){
-        alert('Called from IIFE modelController');
-    }
+    // functionName: function(){}
   };
 
 
 })();
 
+// Logical Controller
 var controller = (function(viewCtrl, modelCtrl){
 
-  // Run test code from IIFE(Immediately Invoked Function Expression) modelController
-  modelCtrl.runCode();
+  // code here
 
 })(viewController, modelController);
