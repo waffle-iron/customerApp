@@ -43,6 +43,11 @@
                     <input type="text" class="form-control" id="inputPlateNumber" placeholder="For example: CV33610, DK88710">
                   </div>
 
+                  <div class="form-group">
+                    <label for="inputPrice">Price</label>
+                    <input type="number" class="form-control" id="inputPrice" placeholder="What is the total price of the service">
+                  </div>
+
                   <!--Check boxes-->
                   <label>Select Service(s) Provided</label>
                   <div class="checkbox">
@@ -60,7 +65,7 @@
 
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button type="submit" onclick="" class="btn btn-primary">Submit</button>
+                  <button type="submit" onclick="saveData()" class="btn btn-primary">Submit</button>
                 </div>
              </form>
 
