@@ -19,25 +19,55 @@
 
     <div class="container">
       <p></p>
-        <button type="primary" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Upload new data</button>
+        <!--Button that allows the user to upload data into server-->
+        <button class="btn btn-primary" data-toggle="modal" data-target="#addRecord">Upload new data</button>
+
         <!-- User Input field -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" id="addRecord" tabindex="-1" role="dialog" aria-labelledby="addLabel">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                <h4 class="modal-title" id="addLabel">Insert Data</h4>
               </div>
-              <div class="modal-body">
-                ...
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-              </div>
+
+              <!--Input form-->
+              <form>
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label for="inputName">Full Name</label>
+                    <input type="text" class="form-control" id="inputName" placeholder="Your name">
+                  </div>
+                  <div class="form-group">
+                    <label for="inputPlateNumber">Plate Number</label>
+                    <input type="text" class="form-control" id="inputPlateNumber" placeholder="For example: CV33610, DK88710">
+                  </div>
+
+                  <!--Check boxes-->
+                  <label>Select Service(s) Provided</label>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" id="inWash" value="200">
+                      Inside &dash; Car Wash
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" id="outWash" value="200">
+                      Outside &dash; Car Wash
+                    </label>
+                  </div>
+
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="submit" onclick="" class="btn btn-primary">Submit</button>
+                </div>
+             </form>
+
             </div>
           </div>
         </div>
+
       <p></p>
     </div>
 
