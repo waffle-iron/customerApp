@@ -6,4 +6,4 @@
 // Logical Controller
 //var controller = (function(viewCtrl, modelCtrl){})(viewController, modelController);
 
-alert('Javascript is working');
+// alert('Javascript is working');
