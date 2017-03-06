@@ -1,63 +1,34 @@
-<html>
-    <header>
-      <meta charset="UTF-8">
-      <link type="text/css" rel="stylesheet" href="style.css">
-      <!-- Latest compiled and minified CSS -->
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-      <!-- Optional theme -->
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-      <!--Bootstrap need Jquery-->
-      <script src="jquery-3.1.1.js"></script>
-      <!-- Latest compiled and minified JavaScript -->
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-      <title>CustomerApp</title>
-    </header>
-    <body>
-        <!-- User Input Form-->
-        <div class = "section group"> <!---->
-          <div class="col span_1_of_2">
-            <form>
-                <!--Input field-->
-                <div class="form-group">
-                    <label for="customerName">Customer Name</label>
-                    <input type="text" class="form-control" id="customerName" placeholder="Customer Name">
-                </div>
 
-                <div class="form-group">
-                    <label for="plateNumber">Plate Number</label>
-                    <input type="text" class="form-control" id="plateNumber" placeholder="Plate Number">
-                </div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>CRUD Application</title>
 
-                <!--Multiple Options-->
-                <!--<div><label for="typesOfCarWash">Select types of services</label></div>-->
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" id="inWash" value="200">
-                    Option one is this and that&mdash;be sure to include why it's great
-                  </label>
-                  <label>
-                    <input type="checkbox" id="outWash" value="200">
-                    Option one is this and that&mdash;be sure to include why it's great
-                  </label>
-                  <label>
-                    <input type="checkbox" id="intAndOutWash" value="300">
-                    Option one is this and that&mdash;be sure to include why it's great
-                  </label>
-                </div>
+    <!--Interal dependencies-->
+    <link type = "text/css" rel="stylesheet" href="css/style.css"/>
 
+    <!--External dependencies-->
 
-                <div class="form-group">
-                  <label for="price">Total Price</label>
-                  <input type="text" class="form-control" id="plateNumber" placeholder="Plate Number">
-                </div>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
-                <button type="submit" class="btn btn-default">Submit</button>
-            </form>
-          </div>
-        </div>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <h1>Hello, world!</h1>
 
-
-
-        <script src="app.js"></script>
-    </body>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
 </html>
