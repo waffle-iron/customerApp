@@ -1,7 +1,7 @@
 
 // Save Data
 function saveData(){
-
+  alert('saveData() function is running');
   // Store value
   var name = $('#inputName').val();
   var plateNumber = $('#inputPlateNumber').val();
