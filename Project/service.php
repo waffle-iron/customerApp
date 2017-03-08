@@ -14,24 +14,20 @@
   // Question mark is called ternary operator, used for: if first operand evaluates true, evaluate as second operand, else evaluate as third operand.
   $page = isset($_GET['p'])?$_GET['p']:'';
 
-  echo 'working..';
-
+  echo 'Server is connected';
   //
   if($page=='add'){
 
     // Store data into database
     $name = $_POST['inputName'];
     $plateNumber = $_POST['inputPlateNumber'];
-    $price = $_POST['inputPrice'];
-    $inWash = $_POST['inWash'];
-    $outWash = $_POST['outWash'];
+    $totalPrice = $_POST['inputPrice'];
 
-    $stmt = $db->prepare("insert into crud values('',?,?,?,?,?)");
+    $stmt = $db->prepare("insert into crud values('',?,?,?)");
     $stmt->bindParam(1, $name);
     $stmt->bindParam(2, $plateNumber);
-    $stmt->bindParam(3, $price);
-    $stmt->bindParam(4, $inWash);
-    $stmt->bindParam(5, $outWash);
+    $stmt->bindParam(3, $totalPrice);
+
     $stmt->execute();
 
   }

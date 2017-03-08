@@ -43,25 +43,28 @@
                     <input type="text" class="form-control" id="inputPlateNumber" placeholder="For example: CV33610, DK88710">
                   </div>
 
-                  <div class="form-group">
+                  <!--<div class="form-group">
                     <label for="inputPrice">Price</label>
                     <input type="number" class="form-control" id="inputPrice" placeholder="What is the total price of the service">
-                  </div>
+                  </div>-->
 
                   <!--Check boxes-->
                   <label>Select Service(s) Provided</label>
-                  <div class="checkbox">
+                  <div class="checkbox" onclick="sumCheckboxValues()">
                     <label>
-                      <input type="checkbox" id="inWash" value="200">
+                      <input type="checkbox" name="mybox" id="inWash" value="200">
                       Inside &dash; Car Wash
                     </label>
-                  </div>
-                  <div class="checkbox">
+                  </br>
                     <label>
-                      <input type="checkbox" id="outWash" value="200">
+                      <input type="checkbox" name="mybox" id="outWash" value="200">
                       Outside &dash; Car Wash
                     </label>
                   </div>
+
+
+                  <p type="text" id="showPrice">....</p>
+
 
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
