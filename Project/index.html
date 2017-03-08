@@ -50,7 +50,7 @@
 
                   <!--Check boxes-->
                   <label>Select Service(s) Provided</label>
-                  <div class="checkbox" onclick="sumCheckboxValues()">
+                  <div class="checkbox" id="sumCheckboxValues">
                     <label>
                       <input type="checkbox" name="mybox" id="inWash" value="200">
                       Inside &dash; Car Wash
@@ -68,7 +68,7 @@
 
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button type="submit" onclick="saveData()" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary" id="inputButton">Submit</button>
                 </div>
              </form>
 

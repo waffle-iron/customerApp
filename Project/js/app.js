@@ -1,55 +1,100 @@
-init();
+/*
+* Using MVC approach with IIFE
+*/
 
-// Save Data
-function saveData(){
+// Front-end (user-input)
+var viewController = (function(){
 
-  // Receive user input and set it to new variable.
-  var name = $('#inputName').val();
-  var plateNumber = $('#inputPlateNumber').val();
-  var totalPrice = sumCheckboxValues();
+  // // Get DOM strings
+  // var DOMdata = {
+  //   inputUserNameContainer: 'inputName',
+  //   inputPlateNumberContainer: 'inputPlateNumber',
+  //
+  // };
 
-  // Ajax post function
-  $.ajax({
-    type: "POST",
-    url: "service.php?p=add",
-    data: "inputName="+name+"&inputPlateNumber="+plateNumber+"&inputPrice="+totalPrice,
-    success: function(msg){
-      alert('Success: Insert data');
+  var sumCheckbox = document.getElementById('sumCheckboxValues').addEventListener("click", function(){
+        // Declare array
+        var type = [];
+
+        // Insert value if checbox is selected
+        $("input[name=mybox]:checked").each(function(){
+          // push value into array
+          var value = parseInt(this.value);
+          type.push(value);
+        });
+
+        // Add total sum of the checkboxes
+        var sum = 0;
+        for (var i = 0; i < type.length; i++) {
+          sum += type[i];
+        }
+
+        // Set price value in html
+        document.getElementById('showPrice').textContent = sum;
+
+        return sum;
+      });
+
+      console.log('This is the total sum of the checkbox' + sumCheckbox);
+
+
+  //return methods
+  return{
+    saveData: function(){
+      // Receive user input and set it to new variable.
+      var name = $('#inputName').val();
+      var plateNumber = $('#inputPlateNumber').val();
+      console.log('in viewController = ' + sumCheckboxValues());
+      var totalPrice = sumCheckboxValues();
+
+      // Ajax post function
+      $.ajax({
+        type: "POST",
+        url: "service.php?p=add",
+        data: "inputName="+name+"&inputPlateNumber="+plateNumber+"&inputPrice="+totalPrice,
+        success: function(msg){
+          alert('Success: Insert data');
+        }
+      });
     }
-  });
-}
+  };
 
-function sumCheckboxValues(){
-  // Declare array
-  var type = [];
+})();
 
-  // Insert value if checbox is selected
-  $("input[name=mybox]:checked").each(function(){
-    // push value into array
-    var value = parseInt(this.value);
-    type.push(value);
-  });
+// Back-end (database)
+var modelController = (function(){
 
-  // Add total sum of the checkboxes
-  var sum = 0;
-  for (var i = 0; i < type.length; i++) {
-    sum += type[i];
-  }
+  // Return methods
+  return {
 
-  // Set price value in html
-  document.getElementById('showPrice').textContent = sum;
+  };
+})();
 
-  return sum;
-}
+// Controller (logical calculations)
+var controller = (function(viewCtrl, modelCtrl){
 
-// Initialize Application
-function init(){
-  // Reset input values
-  // Reset Checkboxes
-  // Reset Prices
-  document.getElementById('inputName').textContent = '';
-  document.getElementById('inputPlateNumber').textContent = '';
-  document.getElementById('inWash').checked = false;
-  document.getElementById('outWash').checked = false;
-  document.getElementById('showPrice').textContent = 0;
-}
+  var setupEventlistener = function(){
+
+  
+
+  };
+
+
+  // Return methods
+  return{
+    init: function(){
+      console.log('Application is running');
+      // Reset input values, Checkboxes, Prices
+      document.getElementById('inputName').textContent = '';
+      document.getElementById('inputPlateNumber').textContent = '';
+      document.getElementById('inWash').checked = false;
+      document.getElementById('outWash').checked = false;
+      document.getElementById('showPrice').textContent = 0;
+    }
+  };
+
+})(viewController, modelController);
+
+
+// Run application
+controller.init();
