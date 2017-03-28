@@ -17,7 +17,14 @@ var viewController = (function(){
   var userInput = function(){
     var name = $(DOMdata.inputUserNameContainer).val();
     var plateNumber = $(DOMdata.inputPlateNumberContainer).val();
-    var totalPrice = sumCheckbox();
+    var totalPrice = viewController.sumCheckbox();
+
+    // Return values
+    return{
+      name: name,
+      plateNumber: plateNumber,
+      totalPrice: totalPrice
+    };
   };
 
 
@@ -46,19 +53,25 @@ var viewController = (function(){
           return sum;
         },
     saveData: function(){
-      alert('saveData()');
-      var name = $(DOMdata.inputUserNameContainer).val();
-      var plateNumber = $(DOMdata.inputPlateNumberContainer).val();
-      var totalPrice = viewController.sumCheckbox();
-      // Ajax post function
-      $.ajax({
-        type: "POST",
-        url: "service.php?p=add",
-        data: "inputName="+name+"&inputPlateNumber="+plateNumber+"&inputPrice="+totalPrice,
-        success: function(msg){
-          alert('Success: Insert data');
-        }
-      });
+      var input;
+      // Get user input values
+      input = userInput();
+
+      // Check if input form is empty
+      if (input.name === '' && input.plateNumber === '' && input.totalPrice === 0) {
+        // Prompt user information.
+        alert('Please fill out the marked inputfields');
+      } else {
+        // Ajax post function
+        $.ajax({
+          type: "POST",
+          url: "service.php?p=add",
+          data: "inputName="+input.name+"&inputPlateNumber="+input.plateNumber+"&inputPrice="+input.totalPrice,
+          success: function(msg){
+            alert('Success: Insert data');
+          }
+        });
+      }
     },
     getDOMdata: function(){
       return DOMdata;
