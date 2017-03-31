@@ -1,5 +1,6 @@
 /*
 * Using MVC approach with IIFE
+* By Dler Hasan
 */
 
 // Front-end (user-input)
@@ -73,6 +74,15 @@ var viewController = (function(){
         });
       }
     },
+    viewTable: function(){
+      $.ajax({
+        type: "GET",
+        url: "service.php",
+        success: function(data){
+          $('tbody').html(data);
+        }
+      });
+    },
     getDOMdata: function(){
       return DOMdata;
     }
@@ -101,6 +111,9 @@ var controller = (function(viewCtrl, modelCtrl){
 
     // Listen to saveData event
     document.getElementById(DOMtag.inputButtonContainer).addEventListener("click", viewCtrl.saveData);
+
+    // Show table
+    viewCtrl.viewTable();
 
   };
 
