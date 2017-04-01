@@ -12,7 +12,9 @@ var viewController = (function(){
     inputPlateNumberContainer: '#inputPlateNumber',
     inputTotalPriceContainer: "showPrice",
     inputCheckBoxContainer: "sumCheckboxValues",
-    inputButtonContainer: "inputButton"
+    inputButtonContainer: "inputButton",
+    showIDContainer: "showID",
+    updateTableContainer: "updateTable"
   };
 
   var userInput = function(){
@@ -83,6 +85,9 @@ var viewController = (function(){
         }
       });
     },
+    updateTable: function(){
+      alert(DOMdata.showIDContainer);
+    },
     getDOMdata: function(){
       return DOMdata;
     }
@@ -112,8 +117,14 @@ var controller = (function(viewCtrl, modelCtrl){
     // Listen to saveData event
     document.getElementById(DOMtag.inputButtonContainer).addEventListener("click", viewCtrl.saveData);
 
+    // Update table
+    document.getElementById(DOMtag.updateTableContainer).addEventListener("click", viewCtrl.updateTable);
+
+
     // Show table
     viewCtrl.viewTable();
+
+
 
   };
 
