@@ -121,10 +121,10 @@ var controller = (function(viewCtrl, modelCtrl){
     document.getElementById(DOMtag.inputCheckBoxContainer).addEventListener("click", viewCtrl.sumCheckbox);
 
     // Listen to saveData event
-    //document.getElementById(DOMtag.inputButtonContainer).addEventListener("click", viewCtrl.saveData);
+    document.getElementById(DOMtag.inputButtonContainer).addEventListener("click", viewCtrl.saveData);
 
 
-
+    // Show table
     viewCtrl.viewTable();
 
     setTimeout(function(){
