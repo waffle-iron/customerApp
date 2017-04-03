@@ -80,7 +80,7 @@
                 <form>
                   <div class="modal-body">
 
-                    <input type="hidden" id="showID" value="<?php echo $row['id']?>">
+                    <input type="hidden" id="<?php echo $row['id']?>" value="<?php echo $row['id']?>">
                     <div class="form-group">
                       <label for="inputName">Full Name</label>
                       <input type="text" class="form-control" id="inputName-<?php echo $row['id']?>" value="<?php echo $row['fullname']?>">
@@ -93,12 +93,12 @@
 
                     <div class="form-group">
                       <label for="totalPrice">Total Price</label>
-                      <input type="number" class="form-control" id="totalPrice-<?php echo $row['totalprice']?>" value="<?php echo $row['totalprice']?>">
+                      <input type="number" class="form-control" id="totalPrice-<?php echo $row['id']?>" value="<?php echo $row['totalprice']?>">
                     </div>
 
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" id="updateTable">Update Data</button>
+                    <button type="submit" class="btn btn-primary" id="inputUpdate">Submit</button>
                   </div>
                </form>
 

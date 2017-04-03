@@ -13,9 +13,8 @@ var viewController = (function(){
     inputPlateNumberContainer: '#inputPlateNumber',
     inputTotalPriceContainer: "showPrice",
     inputCheckBoxContainer: "sumCheckboxValues",
-    inputButtonContainer: "inputButton",
-    showIDContainer: "showID",
-    updateTableContainer: "updateTable"
+    inputButtonContainer: "#inputButton",
+    inputUpdateTableContainer: "inputUpdate"
   };
 
   var userInput = function(){
@@ -87,7 +86,9 @@ var viewController = (function(){
       });
     },
     updateTable: function(){
-      alert(DOMdata.showIDContainer);
+      //alert(DOMdata.showIDContainer);
+      alert("OMG!");
+
     },
     getDOMdata: function(){
       return DOMdata;
@@ -112,18 +113,26 @@ var controller = (function(viewCtrl, modelCtrl){
     // Import containers such as id or class names
     var DOMtag = viewCtrl.getDOMdata();
 
+
+    // Update table
+    //document.getElementById(DOMtag.inputUpdateTableContainer).addEventListener("click", viewCtrl.updateTable);
+
     // Listen to checkbox click events
     document.getElementById(DOMtag.inputCheckBoxContainer).addEventListener("click", viewCtrl.sumCheckbox);
 
     // Listen to saveData event
-    document.getElementById(DOMtag.inputButtonContainer).addEventListener("click", viewCtrl.saveData);
-
-    // Update table
-    document.getElementById(DOMtag.updateTableContainer).addEventListener("click", viewCtrl.updateTable);
+    //document.getElementById(DOMtag.inputButtonContainer).addEventListener("click", viewCtrl.saveData);
 
 
-    // Show table
+
     viewCtrl.viewTable();
+
+    setTimeout(function(){
+      $(DOMtag.inputButtonContainer).click(function(){
+        alert("ALERT!!!! HELLO!!");
+      });
+    }, 500);
+
 
 
 
@@ -146,7 +155,6 @@ var controller = (function(viewCtrl, modelCtrl){
   };
 
 })(viewController, modelController);
-
 
 // Run application
 controller.init();
