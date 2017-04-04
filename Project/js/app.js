@@ -11,10 +11,10 @@ var viewController = (function(){
   var DOMdata = {
     inputUserNameContainer: '#inputName',
     inputPlateNumberContainer: '#inputPlateNumber',
-    inputTotalPriceContainer: "showPrice",
-    inputCheckBoxContainer: "sumCheckboxValues",
-    inputButtonContainer: "inputButton",
-    inputUpdateTableContainer: "inputUpdate"
+    inputTotalPriceContainer: "#showPrice",
+    inputCheckBoxContainer: "#sumCheckboxValues",
+    inputButtonContainer: "#inputButton",
+    inputUpdateContainer: "#inputUpdate"
   };
 
   var userInput = function(){
@@ -51,7 +51,8 @@ var viewController = (function(){
           }
 
           // Set price value in html
-          document.getElementById(DOMdata.inputTotalPriceContainer).textContent = sum;
+          //document.getElementById(DOMdata.inputTotalPriceContainer).textContent = sum;
+          $(DOMdata.inputTotalPriceContainer).text(sum);
 
           return sum;
         },
@@ -108,36 +109,22 @@ var modelController = (function(){
 // Controller (logical calculations)
 var controller = (function(viewCtrl, modelCtrl){
 
-  var setupEventlistener = function(){
+  // Show table
+  viewCtrl.viewTable();
 
+  // Placeholder for all click events
+  var setupEventlistener = function(){
     // Import containers such as id or class names
     var DOMtag = viewCtrl.getDOMdata();
 
-
-    // Update table
-    //document.getElementById(DOMtag.inputUpdateTableContainer).addEventListener("click", viewCtrl.updateTable);
-
     // Listen to checkbox click events
-    document.getElementById(DOMtag.inputCheckBoxContainer).addEventListener("click", viewCtrl.sumCheckbox);
+    $(DOMtag.inputCheckBoxContainer).on("click", viewCtrl.sumCheckbox);
 
     // Listen to saveData event
-    document.getElementById(DOMtag.inputButtonContainer).addEventListener("click", viewCtrl.saveData);
+    $(DOMtag.inputButtonContainer).on("click", viewCtrl.saveData);
 
-
-    // Show table
-    viewCtrl.viewTable();
-
-    $('body').delegate("#inputUpdate", "click", viewCtrl.updateTable);
-
-    // setTimeout(function(){
-    //   $(DOMtag.inputButtonContainer).click(function(){
-    //     alert("ALERT!!!! HELLO!!");
-    //   });
-    // }, 500);
-
-
-
-
+    // Listen to inputUpdade, delegate() is used to load HTML body before JavaScript accesses it.
+    $("body").delegate(DOMtag.inputUpdateContainer, "click", viewCtrl.updateTable);
   };
 
 
