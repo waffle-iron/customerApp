@@ -13,7 +13,7 @@ var viewController = (function(){
     inputPlateNumberContainer: '#inputPlateNumber',
     inputTotalPriceContainer: "showPrice",
     inputCheckBoxContainer: "sumCheckboxValues",
-    inputButtonContainer: "#inputButton",
+    inputButtonContainer: "inputButton",
     inputUpdateTableContainer: "inputUpdate"
   };
 
@@ -127,11 +127,13 @@ var controller = (function(viewCtrl, modelCtrl){
     // Show table
     viewCtrl.viewTable();
 
-    setTimeout(function(){
-      $(DOMtag.inputButtonContainer).click(function(){
-        alert("ALERT!!!! HELLO!!");
-      });
-    }, 500);
+    $('body').delegate("#inputUpdate", "click", viewCtrl.updateTable);
+
+    // setTimeout(function(){
+    //   $(DOMtag.inputButtonContainer).click(function(){
+    //     alert("ALERT!!!! HELLO!!");
+    //   });
+    // }, 500);
 
 
 
