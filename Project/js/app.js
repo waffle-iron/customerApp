@@ -1,8 +1,8 @@
 /*
 * Using MVC approach with IIFE
 * By Dler Hasan
+* Create password that remembers always.
 */
-
 
 // Front-end (user-input)
 var viewController = (function(){
@@ -14,7 +14,7 @@ var viewController = (function(){
     inputTotalPriceContainer: "#showPrice",
     inputCheckBoxContainer: "#sumCheckboxValues",
     inputButtonContainer: "#inputButton",
-    inputUpdateContainer: "#inputUpdate",
+    inputUpdateContainer: ".inputUpdate",
     getIDContainer: "#idValue"
   };
 
@@ -30,7 +30,6 @@ var viewController = (function(){
       totalPrice: totalPrice
     };
   };
-
 
   //return methods
   return{
@@ -68,10 +67,13 @@ var viewController = (function(){
         alert('Please fill out the marked inputfields');
       } else {
         // Ajax post function
+        // ? Means it comes variables
+        // url: place we want to open
+        // POST: I will send you data via post request
         $.ajax({
           type: "POST",
           url: "service.php?p=add",
-          data: "inputName="+input.name+"&inputPlateNumber="+input.plateNumber+"&inputPrice="+input.totalPrice,
+          data: "inputName=" + input.name + "&inputPlateNumber="+input.plateNumber+"&inputPrice="+input.totalPrice,
           success: function(msg){
             alert('Success: Insert data');
           }
@@ -88,6 +90,11 @@ var viewController = (function(){
       });
     },
     updateTable: function(){
+      // Explode
+      var tagName = this.getAttribute("id");
+      var array = tagName.split("-");
+      var id = array[1];
+      alert(id);
 
     },
     getDOMdata: function(){
@@ -123,6 +130,7 @@ var controller = (function(viewCtrl, modelCtrl){
     $(DOMtag.inputButtonContainer).on("click", viewCtrl.saveData);
 
     // Listen to inputUpdade, delegate() is used to load HTML body before JavaScript accesses it.
+    //$("body").delegate(DOMtag.inputUpdateContainer, "click", viewCtrl.updateTable);
     $("body").delegate(DOMtag.inputUpdateContainer, "click", viewCtrl.updateTable);
   };
 
@@ -130,6 +138,7 @@ var controller = (function(viewCtrl, modelCtrl){
   // Return methods
   return{
     init: function(){
+
       console.log('Application is running');
 
       // Reset input values, Checkboxes, Prices
@@ -143,6 +152,10 @@ var controller = (function(viewCtrl, modelCtrl){
   };
 
 })(viewController, modelController);
+
+// function inputUpdate(id){
+//   alert(id);
+// }
 
 // Run application
 controller.init();

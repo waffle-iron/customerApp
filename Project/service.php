@@ -20,6 +20,7 @@
 
   // Isset: Check whether a variable is set or NULL, returns true or false.
   // Ternary operator, same as if-statement.
+  // Isset check if we have a P on the link.
   $page = isset($_GET['p'])?$_GET['p']:'';
 
   echo 'Server is connected';
@@ -107,7 +108,7 @@
 
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" id="inputUpdate" value="<?php echo $row['id']?>">Submit</button>
+                    <button type="submit" class="btn btn-primary inputUpdate" id="update-<?php echo $row['id']?>">Update</button>
                   </div>
                </form>
 
