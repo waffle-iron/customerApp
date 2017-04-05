@@ -46,6 +46,15 @@
 
   }else if($page == 'edite'){
 
+    // // Store data into database
+    // $name = $_POST['inputName'];
+    // $plateNumber = $_POST['inputPlateNumber'];
+    // $totalPrice = $_POST['inputPrice'];
+    //
+    // $stmt = $db->prepare("UPDATE table_name SET fullname = ?, platenumber = ?, totalprice = ? WHERE ID = 1");
+    // $stmt->bindParam(1, $name);
+    // $stmt->bindParam(2, $plateNumber);
+    // $stmt->bindParam(3, $totalPrice);
 
   } else if($page == 'delete'){
 
@@ -80,7 +89,7 @@
                 <form>
                   <div class="modal-body">
 
-                    <input type="hidden" id="<?php echo $row['id']?>" value="<?php echo $row['id']?>">
+                    <input type="hidden" id="id-<?php echo $row['id']?>">
                     <div class="form-group">
                       <label for="inputName">Full Name</label>
                       <input type="text" class="form-control" id="inputName-<?php echo $row['id']?>" value="<?php echo $row['fullname']?>">
@@ -98,7 +107,7 @@
 
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" id="inputUpdate">Submit</button>
+                    <button type="submit" class="btn btn-primary" id="inputUpdate" value="<?php echo $row['id']?>">Submit</button>
                   </div>
                </form>
 

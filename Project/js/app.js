@@ -14,7 +14,8 @@ var viewController = (function(){
     inputTotalPriceContainer: "#showPrice",
     inputCheckBoxContainer: "#sumCheckboxValues",
     inputButtonContainer: "#inputButton",
-    inputUpdateContainer: "#inputUpdate"
+    inputUpdateContainer: "#inputUpdate",
+    getIDContainer: "#idValue"
   };
 
   var userInput = function(){
@@ -34,7 +35,7 @@ var viewController = (function(){
   //return methods
   return{
     sumCheckbox: function(){
-          // Declare array
+          // Declare arra
           var type = [];
 
           // Insert value if checbox is selected
@@ -87,8 +88,6 @@ var viewController = (function(){
       });
     },
     updateTable: function(){
-      //alert(DOMdata.showIDContainer);
-      alert("OMG!");
 
     },
     getDOMdata: function(){
