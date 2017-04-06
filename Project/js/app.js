@@ -14,8 +14,7 @@ var viewController = (function(){
     inputTotalPriceContainer: "#showPrice",
     inputCheckBoxContainer: "#sumCheckboxValues",
     inputButtonContainer: "#inputButton",
-    inputUpdateContainer: ".inputUpdate",
-    getIDContainer: "#idValue"
+    inputUpdateContainer: "#inputUpdate" // This code of line has not been tested. 
   };
 
   var userInput = function(){
@@ -24,7 +23,7 @@ var viewController = (function(){
     var totalPrice = viewController.sumCheckbox();
 
     // Return values
-    return{
+    return{-
       name: name,
       plateNumber: plateNumber,
       totalPrice: totalPrice
@@ -90,12 +89,34 @@ var viewController = (function(){
       });
     },
     updateTable: function(){
-      // Explode
-      var tagName = this.getAttribute("id");
-      var array = tagName.split("-");
-      var id = array[1];
-      alert(id);
 
+      // global variables
+      var input, tagName, array, id;
+      
+      // Get ID name, and convert it into array with id=name-0 becomes [0]=name, [1]=0
+      tagName = this.getAttribute("id");
+      array = tagName.split("-");
+      id = array[1];
+
+      // Get user input
+      input = getInput();
+
+      // Check if input form is empty
+      if (input.name === '' && input.plateNumber === '' && input.totalPrice === 0) {
+        // Prompt user information.
+        alert('Please fill out the marked inputfields');
+      } else {
+        // Ajax post function
+        $.ajax({
+          type: "POST",
+          url: "service.php?p=edit"
+          // Continue here!
+        });
+      }      
+
+      // POST user input
+
+      
     },
     getDOMdata: function(){
       return DOMdata;

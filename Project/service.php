@@ -45,17 +45,7 @@
       echo "Data failed to store";
     }
 
-  }else if($page == 'edite'){
-
-    // // Store data into database
-    // $name = $_POST['inputName'];
-    // $plateNumber = $_POST['inputPlateNumber'];
-    // $totalPrice = $_POST['inputPrice'];
-    //
-    // $stmt = $db->prepare("UPDATE table_name SET fullname = ?, platenumber = ?, totalprice = ? WHERE ID = 1");
-    // $stmt->bindParam(1, $name);
-    // $stmt->bindParam(2, $plateNumber);
-    // $stmt->bindParam(3, $totalPrice);
+  }else if($page == 'edit'){
 
   } else if($page == 'delete'){
 
@@ -83,13 +73,12 @@
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title" id="editeLabel-<?php echo $row['id']?>">Edite data</h4>
+                  <h4 class="modal-title" id="editeLabel-<?php echo $row['id']?>">Update Data</h4>
                 </div>
 
                 <!--Input form-->
                 <form>
                   <div class="modal-body">
-
                     <input type="hidden" id="id-<?php echo $row['id']?>">
                     <div class="form-group">
                       <label for="inputName">Full Name</label>
@@ -108,7 +97,7 @@
 
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary inputUpdate" id="update-<?php echo $row['id']?>">Update</button>
+                    <button type="submit" class="btn btn-primary" id="inputUpdate" id="update-<?php echo $row['id']?>">Sumbit Updates</button>
                   </div>
                </form>
 
