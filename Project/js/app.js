@@ -14,7 +14,8 @@ var viewController = (function(){
     inputTotalPriceContainer: "#showPrice",
     inputCheckBoxContainer: "#sumCheckboxValues",
     inputButtonContainer: "#inputButton",
-    inputUpdateContainer: "#inputUpdate" // This code of line has not been tested. 
+    inputUpdateContainer: ".inputUpdate",
+    inputTotalPrice: "#totalPrice"
   };
 
   var userInput = function(){
@@ -23,7 +24,20 @@ var viewController = (function(){
     var totalPrice = viewController.sumCheckbox();
 
     // Return values
-    return{-
+    return{
+      name: name,
+      plateNumber: plateNumber,
+      totalPrice: totalPrice
+    };
+  };
+
+  var updateUserInput = function(id){
+    var name = $(DOMdata.inputUserNameContainer + "-" + id).val();
+    var plateNumber = $(DOMdata.inputPlateNumberContainer + "-" + id).val();
+    var totalPrice = $(DOMdata.inputTotalPrice + "-" + id).val();
+
+    // Return values
+    return{
       name: name,
       plateNumber: plateNumber,
       totalPrice: totalPrice
@@ -74,7 +88,7 @@ var viewController = (function(){
           url: "service.php?p=add",
           data: "inputName=" + input.name + "&inputPlateNumber="+input.plateNumber+"&inputPrice="+input.totalPrice,
           success: function(msg){
-            alert('Success: Insert data');
+            console.log('Success: Insert data');
           }
         });
       }
@@ -92,14 +106,14 @@ var viewController = (function(){
 
       // global variables
       var input, tagName, array, id;
-      
+
       // Get ID name, and convert it into array with id=name-0 becomes [0]=name, [1]=0
       tagName = this.getAttribute("id");
       array = tagName.split("-");
       id = array[1];
 
-      // Get user input
-      input = getInput();
+      // Get user input, pass id as parameter
+      input = updateUserInput(id);
 
       // Check if input form is empty
       if (input.name === '' && input.plateNumber === '' && input.totalPrice === 0) {
@@ -109,14 +123,17 @@ var viewController = (function(){
         // Ajax post function
         $.ajax({
           type: "POST",
-          url: "service.php?p=edit"
-          // Continue here!
+          url: "service.php?p=edit",
+          data: "inputName=" + input.name + "&inputPlateNumber=" + input.plateNumber + "&inputPrice=" + input.totalPrice + "&id=" + id,
+          success: function(msg){
+            console.log("Success: Data is updated");
+          }
         });
-      }      
+      }
 
       // POST user input
 
-      
+
     },
     getDOMdata: function(){
       return DOMdata;

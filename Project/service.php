@@ -27,12 +27,12 @@
 
   if($page == 'add'){
 
-    // Store data into database
+    // Get data from Ajax call
     $name = $_POST['inputName'];
     $plateNumber = $_POST['inputPlateNumber'];
     $totalPrice = $_POST['inputPrice'];
 
-    // Query Database
+    // Query Database with added result
     $stmt = $db->prepare("INSERT INTO crud VALUES('',?,?,?)");
     $stmt->bindParam(1, $name);
     $stmt->bindParam(2, $plateNumber);
@@ -46,6 +46,28 @@
     }
 
   }else if($page == 'edit'){
+
+    // Get data from Ajax call
+    $id =  $_POST['id'];
+    $name = $_POST['inputName'];
+    $plateNumber = $_POST['inputPlateNumber'];
+    $totalPrice = $_POST['inputPrice'];
+
+    // Query database with updated data
+    $stmt = $db->prepare("UPDATE crud SET fullname=?, platenumber=?, totalprice=?  WHERE id=?");
+    $stmt->bindParam(1, $name);
+    $stmt->bindParam(2, $plateNumber);
+    $stmt->bindParam(3, $totalPrice);
+    $stmt->bindParam(4, $id);
+
+
+    // Executes statement function
+    if($stmt->execute()){
+      echo "Success Data";
+    } else {
+      echo "Data failed to store";
+    }
+
 
   } else if($page == 'delete'){
 
@@ -97,7 +119,7 @@
 
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" id="inputUpdate" id="update-<?php echo $row['id']?>">Sumbit Updates</button>
+                    <button type="submit" class="btn btn-primary inputUpdate" id="update-<?php echo $row['id']?>">Sumbit Updates</button>
                   </div>
                </form>
 
