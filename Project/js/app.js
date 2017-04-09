@@ -15,7 +15,8 @@ var viewController = (function(){
     inputCheckBoxContainer: "#sumCheckboxValues",
     inputButtonContainer: "#inputButton",
     inputUpdateContainer: ".inputUpdate",
-    inputTotalPrice: "#totalPrice"
+    inputTotalPrice: "#totalPrice",
+    inputDeleteContainer: ".inputDelete"
   };
 
   var userInput = function(){
@@ -135,6 +136,28 @@ var viewController = (function(){
 
 
     },
+    deleteRow: function(){
+      // Internal Values
+      var tagName, input, id;
+
+      // Get user Input
+      //input = updateUserInput();
+
+      // Return tag name
+      tagName = this.getAttribute("id");
+
+      // Convert tagName to array
+      id = tagName.split("-");
+
+      console.log(name);
+
+
+
+
+
+
+
+    },
     getDOMdata: function(){
       return DOMdata;
     }
@@ -170,6 +193,9 @@ var controller = (function(viewCtrl, modelCtrl){
     // Listen to inputUpdade, delegate() is used to load HTML body before JavaScript accesses it.
     //$("body").delegate(DOMtag.inputUpdateContainer, "click", viewCtrl.updateTable);
     $("body").delegate(DOMtag.inputUpdateContainer, "click", viewCtrl.updateTable);
+
+    // Listen to delete events
+    $("body").delegate(DOMtag.inputDeleteContainer, "click", viewCtrl.deleteRow);
   };
 
 

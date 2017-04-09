@@ -128,7 +128,7 @@
           </div>
         <p></p>
       </div>
-          <button type="button" class="btn btn-danger">Delete</button>
+          <button type="button" class="btn btn-danger inputDelete" id="delete-<?php echo $row['id']?>">Delete</button>
         </td>
       </tr>
       <?php
