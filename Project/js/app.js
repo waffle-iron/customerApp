@@ -94,7 +94,7 @@ var viewController = (function(){
         });
       }
     },
-    viewTable: function(){
+    updateTable: function(){
       $.ajax({
         type: "GET",
         url: "service.php",
@@ -103,7 +103,7 @@ var viewController = (function(){
         }
       });
     },
-    updateTable: function(){
+    updateRowData: function(){
 
       // global variables
       var input, tagName, array, id;
@@ -131,17 +131,10 @@ var viewController = (function(){
           }
         });
       }
-
-      // POST user input
-
-
     },
     deleteRow: function(){
       // Internal Values
-      var tagName, input, id;
-
-      // Get user Input
-      //input = updateUserInput();
+      var tagName, id;
 
       // Return tag name
       tagName = this.getAttribute("id");
@@ -149,14 +142,16 @@ var viewController = (function(){
       // Convert tagName to array
       id = tagName.split("-");
 
-      console.log(name);
-
-
-
-
-
-
-
+      // Ajax GET call
+      $.ajax({
+        type: "GET",
+        url: "service.php?p=delete",
+        data: "id=" + id[1],
+        success: function(msg){
+          console.log("AJAX Delete function works");
+        }
+      });
+      viewController.updateTable();
     },
     getDOMdata: function(){
       return DOMdata;
@@ -177,7 +172,7 @@ var modelController = (function(){
 var controller = (function(viewCtrl, modelCtrl){
 
   // Show table
-  viewCtrl.viewTable();
+  viewCtrl.updateTable();
 
   // Placeholder for all click events
   var setupEventlistener = function(){
@@ -191,8 +186,8 @@ var controller = (function(viewCtrl, modelCtrl){
     $(DOMtag.inputButtonContainer).on("click", viewCtrl.saveData);
 
     // Listen to inputUpdade, delegate() is used to load HTML body before JavaScript accesses it.
-    //$("body").delegate(DOMtag.inputUpdateContainer, "click", viewCtrl.updateTable);
-    $("body").delegate(DOMtag.inputUpdateContainer, "click", viewCtrl.updateTable);
+    //$("body").delegate(DOMtag.inputUpdateContainer, "click", viewCtrl.updateRowData);
+    $("body").delegate(DOMtag.inputUpdateContainer, "click", viewCtrl.updateRowData);
 
     // Listen to delete events
     $("body").delegate(DOMtag.inputDeleteContainer, "click", viewCtrl.deleteRow);

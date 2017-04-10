@@ -23,8 +23,6 @@
   // Isset check if we have a P on the link.
   $page = isset($_GET['p'])?$_GET['p']:'';
 
-  echo 'Server is connected';
-
   if($page == 'add'){
 
     // Get data from Ajax call
@@ -70,6 +68,19 @@
 
 
   } else if($page == 'delete'){
+
+    // Get ID
+    $id = $_GET['id'];
+
+    $stmt = $db->prepare("DELETE FROM crud WHERE id=?");
+    $stmt->bindParam(1, $id);
+
+    if($stmt->execute()){
+      echo "Item deleted";
+    } else {
+      echo "sql query failed";
+    }
+
 
   } else {
     // Retrieve data and order by latest data on top
