@@ -1,14 +1,14 @@
 /*
-* Using MVC approach with IIFE
+* Using MVC approach with IIFE approach
 * By Dler Hasan
-* Create password that remembers always.
 */
 
 // Front-end (user-input)
 var viewController = (function(){
 
-  // Get DOM strings
+  // Get DOM names
   var DOMdata = {
+    bodyContainer: "body",
     inputUserNameContainer: '#inputName',
     inputPlateNumberContainer: '#inputPlateNumber',
     inputTotalPriceContainer: "#showPrice",
@@ -19,6 +19,7 @@ var viewController = (function(){
     inputDeleteContainer: ".inputDelete"
   };
 
+  // Get user input
   var userInput = function(){
     var name = $(DOMdata.inputUserNameContainer).val();
     var plateNumber = $(DOMdata.inputPlateNumberContainer).val();
@@ -32,6 +33,7 @@ var viewController = (function(){
     };
   };
 
+  // Get users updated input
   var updateUserInput = function(id){
     var name = $(DOMdata.inputUserNameContainer + "-" + id).val();
     var plateNumber = $(DOMdata.inputPlateNumberContainer + "-" + id).val();
@@ -45,45 +47,40 @@ var viewController = (function(){
     };
   };
 
-  //return methods
+  // Return objects
   return{
     sumCheckbox: function(){
-          // Declare arra
           var type = [];
 
-          // Insert value if checbox is selected
+          // Push value into array when checkbox is selected
           $("input[name=mybox]:checked").each(function(){
-            // push value into array
             var value = parseInt(this.value);
             type.push(value);
           });
 
-          // Add total sum of the checkboxes
+          // Sum values in array
           var sum = 0;
           for (var i = 0; i < type.length; i++) {
             sum += type[i];
           }
 
-          // Set price value in html
-          //document.getElementById(DOMdata.inputTotalPriceContainer).textContent = sum;
+          // Show price
           $(DOMdata.inputTotalPriceContainer).text(sum);
 
+          // Return total value
           return sum;
         },
     saveData: function(){
       var input;
-      // Get user input values
+
+      // Get user input
       input = userInput();
 
-      // Check if input form is empty
+      // Validate user input
       if (input.name === '' && input.plateNumber === '' && input.totalPrice === 0) {
-        // Prompt user information.
         alert('Please fill out the marked inputfields');
       } else {
-        // Ajax post function
-        // ? Means it comes variables
-        // url: place we want to open
-        // POST: I will send you data via post request
+        // AJAX: Add data
         $.ajax({
           type: "POST",
           url: "service.php?p=add",
@@ -95,6 +92,7 @@ var viewController = (function(){
       }
     },
     updateTable: function(){
+      // Ajax: Update data
       $.ajax({
         type: "GET",
         url: "service.php",
@@ -105,15 +103,15 @@ var viewController = (function(){
     },
     updateRowData: function(){
 
-      // global variables
+      // Internal variables
       var input, tagName, array, id;
 
-      // Get ID name, and convert it into array with id=name-0 becomes [0]=name, [1]=0
+      // Convert id name to array by splitting with dash
       tagName = this.getAttribute("id");
       array = tagName.split("-");
       id = array[1];
 
-      // Get user input, pass id as parameter
+      // Get users updated inputs with id as argument
       input = updateUserInput(id);
 
       // Check if input form is empty
@@ -121,7 +119,7 @@ var viewController = (function(){
         // Prompt user information.
         alert('Please fill out the marked inputfields');
       } else {
-        // Ajax post function
+        // Ajax: Update/Add new values
         $.ajax({
           type: "POST",
           url: "service.php?p=edit",
@@ -142,7 +140,7 @@ var viewController = (function(){
       // Convert tagName to array
       id = tagName.split("-");
 
-      // Ajax GET call
+      // Ajax: Delete values
       $.ajax({
         type: "GET",
         url: "service.php?p=delete",
@@ -159,14 +157,8 @@ var viewController = (function(){
   };
 })();
 
-// Back-end (database)
-var modelController = (function(){
-
-  // Return methods
-  return {
-
-  };
-})();
+// Back-end (server)
+var modelController = (function(){return {};})();
 
 // Controller (logical calculations)
 var controller = (function(viewCtrl, modelCtrl){
@@ -186,20 +178,17 @@ var controller = (function(viewCtrl, modelCtrl){
     $(DOMtag.inputButtonContainer).on("click", viewCtrl.saveData);
 
     // Listen to inputUpdade, delegate() is used to load HTML body before JavaScript accesses it.
-    //$("body").delegate(DOMtag.inputUpdateContainer, "click", viewCtrl.updateRowData);
-    $("body").delegate(DOMtag.inputUpdateContainer, "click", viewCtrl.updateRowData);
+    $(DOMtag.bodyContainer).delegate(DOMtag.inputUpdateContainer, "click", viewCtrl.updateRowData);
 
     // Listen to delete events
-    $("body").delegate(DOMtag.inputDeleteContainer, "click", viewCtrl.deleteRow);
+    $(DOMtag.bodyContainer).delegate(DOMtag.inputDeleteContainer, "click", viewCtrl.deleteRow);
   };
 
 
   // Return methods
   return{
     init: function(){
-
       console.log('Application is running');
-
       // Reset input values, Checkboxes, Prices
       document.getElementById('inputName').textContent = '';
       document.getElementById('inputPlateNumber').textContent = '';
@@ -211,10 +200,6 @@ var controller = (function(viewCtrl, modelCtrl){
   };
 
 })(viewController, modelController);
-
-// function inputUpdate(id){
-//   alert(id);
-// }
 
 // Run application
 controller.init();
