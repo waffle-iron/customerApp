@@ -158,7 +158,13 @@ var viewController = (function(){
 })();
 
 // Back-end (server)
-var modelController = (function(){return {};})();
+var modelController = (function(){
+
+  // Return methods
+  return {
+
+  };
+})();
 
 // Controller (logical calculations)
 var controller = (function(viewCtrl, modelCtrl){
@@ -200,6 +206,7 @@ var controller = (function(viewCtrl, modelCtrl){
   };
 
 })(viewController, modelController);
+
 
 // Run application
 controller.init();
